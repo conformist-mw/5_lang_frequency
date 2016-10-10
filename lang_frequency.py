@@ -1,5 +1,6 @@
 import re
 from collections import Counter
+import argparse
 
 
 def load_data(filepath):
@@ -14,4 +15,11 @@ def get_most_frequent_words(text):
 
 
 if __name__ == '__main__':
-    pass
+    parser = argparse.ArgumentParser(
+        description='Выводит 10 самых популярных слов в файле')
+    parser.add_argument('filepath', help='укажите файл в формате json')
+    args = parser.parse_args()
+    data = load_data(args.filepath)
+    print('10 самый популярныйх слов в порядке убывания:')
+    for num, word in enumerate(get_most_frequent_words(data), 1):
+        print(num, word)
